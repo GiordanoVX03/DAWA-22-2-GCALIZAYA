@@ -1,29 +1,36 @@
 const express = require('express')
 const app = express()
+const ejs = require('ejs')
 const port = 8080
-const path = require('path');
-var publicPath = path.resolve(__dirname, 'public'); 
 
-app.use(express.static(publicPath));
+// EJS
+app.set('view engine', 'ejs')
+app.set('views', __dirname + '/views')
 
+// Carpetas Static
+app.use(express.static(__dirname + '/public'))
+
+
+// Rutas
 app.listen(port, () => {
     console.log('Esta funcionando en el puerto: ' + port)
 })
 
 app.get('/', (req, res) => {
-    res.sendFile(path.resolve(__dirname + '/public/index.html'))
-})
-
-app.get('/noticias', (req, res) => {
-    res.sendFile(path.resolve(__dirname + '/public/pages/news.html'))
-})
-
-app.get('/comunidad', (req, res) => {
-    res.sendFile(path.resolve(__dirname + '/public/pages/community.html'))
+    res.render("index")
 })
 
 app.get('/registro', (req, res) => {
-    res.sendFile(path.resolve(__dirname + '/public/pages/login.html'))
+    res.render("login")
+
+}) 
+/*
+app.get('/noticias', (req, res) => {
 })
+
+app.get('/comunidad', (req, res) => {
+})
+
+*/
 
 

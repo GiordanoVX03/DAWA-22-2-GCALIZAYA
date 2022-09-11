@@ -1,0 +1,36 @@
+
+<%- include("templates/parts/head") %>
+<body>
+    <%- include("templates/parts/navbar") %>
+    <div class="container text-center border border-success shadow p-3 mb-5  rounded sec__one">
+        <%- include("templates/parts/welcome") %>
+    </div>
+    <div class="container text-center">
+        <h2>Novedades</h2>
+    </div>
+
+    <div class="container" style="margin-bottom: 100px;">
+        <%- include("templates/parts/newness") %>
+
+    </div>
+
+    <div class="container text-center border border-success shadow p-3 mb-5  rounded sec__one">
+        <%- include("templates/parts/more_info") %>
+    </div>
+
+
+    <!-- --------------------------------------------------------  -->
+    <!-- Ventana Modal  -->
+    <!-- --------------------------------------------------------  -->
+    <div class="modal fade" id="miModal" tabindex="-1" role="dialog">
+        <%- include("templates/parts/modal") %>
+    </div>
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
