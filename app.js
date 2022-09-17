@@ -1,36 +1,28 @@
-const express = require('express')
-const app = express()
-const ejs = require('ejs')
-const port = 8080
+// Giordano Calizaya Lab 04
+const express = require('express');  
+const app = express();              
+const http = require('http');        
+const server = http.createServer(app) 
+const { Server, Socket } = require('socket.io')  
+const io = new Server(server)       
+const path = require('path');   
+var publicPath = path.resolve(__dirname, 'cliente'); 
+app.use(express.static(publicPath));
 
-// EJS
-app.set('view engine', 'ejs')
-app.set('views', __dirname + '/views')
 
-// Carpetas Static
-app.use(express.static(__dirname + '/public'))
-
-
-// Rutas
-app.listen(port, () => {
-    console.log('Esta funcionando en el puerto: ' + port)
+io.on('connection', (socket) => {
+    socket.on('chat', (msg) => {
+        io.emit('chat', msg)
+    })
 })
 
-app.get('/', (req, res) => {
-    res.render("index")
+
+app.get('/', (req, res) => {                    
+    res.sendFile(path.resolve(__dirname + '/cliente/index.html')) 
 })
 
-app.get('/registro', (req, res) => {
-    res.render("login")
-
-}) 
-/*
-app.get('/noticias', (req, res) => {
+server.listen(3000, () => {                           
+    console.log('Servidor corriendo y funcionando');
 })
-
-app.get('/comunidad', (req, res) => {
-})
-
-*/
 
 
